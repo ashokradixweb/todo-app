@@ -6,12 +6,13 @@ import type { TodoRepository } from '../src/data/todo-repository.js';
 class MemoryRepository implements TodoRepository {
   constructor(private items: Todo[] = []) {}
 
-  async list(): Promise<Todo[]> {
-    return structuredClone(this.items);
+  list(): Promise<Todo[]> {
+    return Promise.resolve(structuredClone(this.items));
   }
 
-  async replaceAll(todos: Todo[]): Promise<void> {
+  replaceAll(todos: Todo[]): Promise<void> {
     this.items = structuredClone(todos);
+    return Promise.resolve();
   }
 }
 

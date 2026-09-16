@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A simple local Todo app">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A simple local Todo app" />
     <title>Todo</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -52,7 +52,12 @@
           <div class="toolbar panel">
             <label class="search-box">
               <span aria-hidden="true">⌕</span>
-              <input id="searchInput" type="search" placeholder="Search title, notes or tags" autocomplete="off">
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search title, notes or tags"
+                autocomplete="off"
+              />
             </label>
             <label class="sort-box">
               <span>Sort</span>
@@ -100,16 +105,28 @@
           <button id="closeDialog" class="icon-button" type="button" aria-label="Close">×</button>
         </div>
 
-        <input id="todoId" type="hidden">
+        <input id="todoId" type="hidden" />
 
         <label class="field">
           <span>Title</span>
-          <input id="titleInput" name="title" maxlength="160" required placeholder="What needs to be done?">
+          <input
+            id="titleInput"
+            name="title"
+            maxlength="160"
+            required
+            placeholder="What needs to be done?"
+          />
         </label>
 
         <label class="field">
           <span>Notes</span>
-          <textarea id="notesInput" name="notes" maxlength="2000" rows="4" placeholder="Optional details"></textarea>
+          <textarea
+            id="notesInput"
+            name="notes"
+            maxlength="2000"
+            rows="4"
+            placeholder="Optional details"
+          ></textarea>
         </label>
 
         <div class="field-row">
@@ -124,17 +141,19 @@
 
           <label class="field">
             <span>Due date</span>
-            <input id="dueDateInput" type="date">
+            <input id="dueDateInput" type="date" />
           </label>
         </div>
 
         <label class="field">
           <span>Tags <small>comma separated</small></span>
-          <input id="tagsInput" maxlength="320" placeholder="work, personal, errands">
+          <input id="tagsInput" maxlength="320" placeholder="work, personal, errands" />
         </label>
 
         <div class="dialog-actions">
-          <button id="deleteDialogButton" class="button button-danger hidden" type="button">Delete</button>
+          <button id="deleteDialogButton" class="button button-danger hidden" type="button">
+            Delete
+          </button>
           <div class="spacer"></div>
           <button id="cancelDialog" class="button" type="button">Cancel</button>
           <button class="button button-primary" type="submit">Save task</button>

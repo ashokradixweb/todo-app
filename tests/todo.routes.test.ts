@@ -6,7 +6,8 @@ describe('Todo HTTP API', () => {
   it('reports health', async () => {
     const response = await supertest(createApp()).get('/health');
     expect(response.status).toBe(200);
-    expect(response.body.status).toBe('ok');
+    const body = response.body as { status: string };
+    expect(body.status).toBe('ok');
   });
 
   it('rejects invalid input', async () => {
@@ -18,15 +19,18 @@ describe('Todo HTTP API', () => {
   });
 
   it('creates a task', async () => {
-    const response = await supertest(createApp()).post('/api/todos').send({
-      title: 'Test task',
-      notes: 'Details',
-      priority: 'high',
-      dueDate: null,
-      tags: ['demo'],
-    });
+    const response = await supertest(createApp())
+      .post('/api/todos')
+      .send({
+        title: 'Test task',
+        notes: 'Details',
+        priority: 'high',
+        dueDate: null,
+        tags: ['demo'],
+      });
 
     expect(response.status).toBe(201);
-    expect(response.body.item.title).toBe('Test task');
+    const body = response.body as { item: { title: string } };
+    expect(body.item.title).toBe('Test task');
   });
 });

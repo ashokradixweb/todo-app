@@ -3,10 +3,12 @@ import { dirname } from 'node:path';
 import { TodoSchema, type Todo } from '../domain/todo.js';
 import { z } from 'zod';
 
-const StoreSchema = z.object({
-  version: z.literal(1),
-  todos: z.array(TodoSchema),
-}).strict();
+const StoreSchema = z
+  .object({
+    version: z.literal(1),
+    todos: z.array(TodoSchema),
+  })
+  .strict();
 
 export interface TodoRepository {
   list(): Promise<Todo[]>;
@@ -42,8 +44,5 @@ export class JsonTodoRepository implements TodoRepository {
 }
 
 function isMissingFile(error: unknown): boolean {
-  return typeof error === 'object'
-    && error !== null
-    && 'code' in error
-    && error.code === 'ENOENT';
+  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
 }

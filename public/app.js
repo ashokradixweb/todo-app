@@ -240,9 +240,7 @@ async function deleteSelected() {
 
   try {
     await Promise.all(
-      [...state.selected].map((id) =>
-        api(`/api/todos/${id}`, { method: 'DELETE' }),
-      ),
+      [...state.selected].map((id) => api(`/api/todos/${id}`, { method: 'DELETE' })),
     );
     state.selected.clear();
     showToast('Selected tasks deleted');
@@ -305,9 +303,7 @@ function renderTodoCard(todo) {
   const card = document.createElement('article');
   card.className = 'todo-card panel';
 
-  const tags = todo.tags
-    .map((tag) => `<span class="badge">#${escapeHtml(tag)}</span>`)
-    .join('');
+  const tags = todo.tags.map((tag) => `<span class="badge">#${escapeHtml(tag)}</span>`).join('');
 
   const due = todo.dueDate
     ? `<span class="badge ${isOverdue(todo) ? 'overdue' : ''}">${escapeHtml(formatDue(todo.dueDate))}</span>`
@@ -391,13 +387,10 @@ function matchesSearch(todo) {
   const query = state.search.trim().toLowerCase();
   if (!query) return true;
 
-  return [
-    todo.title,
-    todo.notes,
-    todo.priority,
-    todo.dueDate ?? '',
-    ...todo.tags,
-  ].join(' ').toLowerCase().includes(query);
+  return [todo.title, todo.notes, todo.priority, todo.dueDate ?? '', ...todo.tags]
+    .join(' ')
+    .toLowerCase()
+    .includes(query);
 }
 
 function compareTodos(a, b) {

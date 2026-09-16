@@ -21,13 +21,9 @@ export class TodoService {
       .filter((todo) => {
         if (!query) return true;
 
-        const haystack = [
-          todo.title,
-          todo.notes,
-          todo.priority,
-          todo.dueDate ?? '',
-          ...todo.tags,
-        ].join(' ').toLowerCase();
+        const haystack = [todo.title, todo.notes, todo.priority, todo.dueDate ?? '', ...todo.tags]
+          .join(' ')
+          .toLowerCase();
 
         return haystack.includes(query);
       });
@@ -50,7 +46,10 @@ export class TodoService {
 
     if (index === -1) return undefined;
 
-    const updated = updateTodo(todos[index]!, input);
+    const current = todos[index];
+    if (!current) return undefined;
+
+    const updated = updateTodo(current, input);
     todos[index] = updated;
     await this.repository.replaceAll(todos);
 
