@@ -59,7 +59,12 @@ export function createTodo(input: CreateTodo): Todo {
 export function updateTodo(todo: Todo, input: UpdateTodo): Todo {
   return {
     ...todo,
-    ...input,
+    ...(input.title !== undefined && { title: input.title }),
+    ...(input.notes !== undefined && { notes: input.notes }),
+    ...(input.completed !== undefined && { completed: input.completed }),
+    ...(input.priority !== undefined && { priority: input.priority }),
+    ...(input.dueDate !== undefined && { dueDate: input.dueDate }),
+    ...(input.tags !== undefined && { tags: input.tags }),
     updatedAt: new Date().toISOString(),
   };
 }
